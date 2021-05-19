@@ -20,23 +20,24 @@ public:
 	} Screen;
 
 	struct Menu_t {
-		float Size[ESize::Count] = { 500.0f, 400.0f };
+		float Size[ESize::Count] = { 400.0f, 350.0f };
 	} Menu;
 
 	void SetupFrontend();
 	void Render();
 
 	bool bVisible = true;
-	const char* LoaderName = "UnknownLoader";
+	HWND LoaderHWND = nullptr;
+	const char* LoaderName = "ImGui Loader";
 
 private:
 	void CreateStyles(ImGuiStyle* Style);
 	void CreateColors(ImGuiStyle* Style);
 	void CreateFonts(ImGuiIO& IO, UINT uiFontFlags = 0U);
 
-	bool bSetuped = false;
 	RECT ScreenSize = {};
-	const ImGuiWindowFlags WindowFlags = /*ImGuiWindowFlags_NoTitleBar |*/ ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoBringToFrontOnFocus;
+	bool bSetuped = false;
+	const ImGuiWindowFlags WindowFlags = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoBringToFrontOnFocus;
 };
 
 #endif // !Menu_hh

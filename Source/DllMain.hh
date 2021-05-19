@@ -5,13 +5,10 @@
 
 #include "Includes.hh"
 
-LPDIRECT3D9				g_LpDirect3D9 = NULL;
-LPDIRECT3DDEVICE9		g_LpDirect3DDevice = NULL;
-D3DPRESENT_PARAMETERS	g_D3DPresentParameters = {};
+LPDIRECT3D9             g_LpDirect3D9 = NULL;
+LPDIRECT3DDEVICE9       g_LpDirect3DDevice = NULL;
+D3DPRESENT_PARAMETERS   g_D3DPresentParameters = {};
 MSG                     g_Message = {};
-
-HWND LoaderHWND = nullptr;
-bool LoaderVisible = true;
 
 bool CreateDevice(HWND hWnd) {
 
@@ -36,7 +33,7 @@ bool CreateDevice(HWND hWnd) {
     g_D3DPresentParameters.PresentationInterval = D3DPRESENT_INTERVAL_DEFAULT;
 
     if (g_LpDirect3D9->CreateDevice(D3DADAPTER_DEFAULT, _D3DDEVTYPE::D3DDEVTYPE_HAL, hWnd, D3DCREATE_HARDWARE_VERTEXPROCESSING,
-        &g_D3DPresentParameters, &g_LpDirect3DDevice) < 0) {
+        &g_D3DPresentParameters, &g_LpDirect3DDevice) < 0L) {
         return false;
     }
 
@@ -62,7 +59,7 @@ void ResetDevice() {
     HRESULT HResult = g_LpDirect3DDevice->Reset(&g_D3DPresentParameters);
 
     if (HResult == D3DERR_INVALIDCALL) {
-        IM_ASSERT(NULL);
+        assert(NULL);
     }
 
     ImGui_ImplDX9_CreateDeviceObjects();

@@ -4,20 +4,8 @@
 #define Includes_hh
 
 #include <Windows.h>
-#include <Iostream>
-#include <FileSystem>
-#include <Thread>
-#include <Chrono>
-#include <Tlhelp32.h>
 
-#include <Shlwapi.h>
-#pragma comment(lib, "Shlwapi.lib")
-//#pragma comment(lib, "Urlmon.lib")
-
-#include <Wininet.h>
-#pragma comment(lib, "Wininet.lib")
-
-#include <d3d9.h>
+#include <D3d9.h>
 #pragma comment(lib, "D3d9.lib")
 
 /* ImGui */
@@ -37,7 +25,5 @@
 
 /* Utilities */
 #include "Utilities/Singleton.hh"
-
-using namespace std::chrono_literals;
 
 #endif // !Includes_hh

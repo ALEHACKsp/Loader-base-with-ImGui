@@ -93,5 +93,5 @@ void CMenu::CreateFonts(ImGuiIO& IO, UINT uiFontFlags) {
 	ImArialConfig.FontBuilderFlags = ImGuiFreeTypeBuilderFlags::ImGuiFreeTypeBuilderFlags_LightHinting;
 	IO.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\Arial.ttf", 14.0f, &ImArialConfig, StaticRanges);
 
-	ImGuiFreeType::BuildFontAtlas(ImGui::GetIO().Fonts, uiFontFlags);
+	ImGuiFreeType::BuildFontAtlas(IO.Fonts, uiFontFlags);
 }

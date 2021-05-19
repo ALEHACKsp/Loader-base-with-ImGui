@@ -6,10 +6,10 @@ BOOL APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 	WNDCLASSEX WNDClassEx = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0, 0, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, CMenu::Get().LoaderName, NULL };
     RegisterClassEx(&WNDClassEx);
 
-    LoaderHWND = CreateWindow(WNDClassEx.lpszClassName, CMenu::Get().LoaderName, WS_POPUP, 0, 0, 1, 1, NULL, NULL, WNDClassEx.hInstance, NULL);
+    CMenu::Get().LoaderHWND = CreateWindow(WNDClassEx.lpszClassName, CMenu::Get().LoaderName, WS_POPUP, 0, 0, 1, 1, NULL, NULL, WNDClassEx.hInstance, NULL);
 
     /* Initialize Direct3D */
-    if (!CreateDevice(LoaderHWND)) {
+    if (!CreateDevice(CMenu::Get().LoaderHWND)) {
         CleanupDevice();
         UnregisterClass(WNDClassEx.lpszClassName, WNDClassEx.hInstance);
 
@@ -17,8 +17,8 @@ BOOL APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
     }
 
     /* Show the window */
-    ShowWindow(LoaderHWND, SW_HIDE);
-    UpdateWindow(LoaderHWND);
+    ShowWindow(CMenu::Get().LoaderHWND, SW_HIDE);
+    UpdateWindow(CMenu::Get().LoaderHWND);
 
     /* Setup ImGui context */
     ImGui::CreateContext();
@@ -30,7 +30,7 @@ BOOL APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
     /* Create Fonts/Colors */
     CMenu::Get().SetupFrontend();
 
-    ImGui_ImplWin32_Init(LoaderHWND);
+    ImGui_ImplWin32_Init(CMenu::Get().LoaderHWND);
     ImGui_ImplDX9_Init(g_LpDirect3DDevice);
 
     while (CMenu::Get().bVisible) {
@@ -82,7 +82,7 @@ BOOL APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
     ImGui::DestroyContext();
 
     CleanupDevice();
-    DestroyWindow(LoaderHWND);
+    DestroyWindow(CMenu::Get().LoaderHWND);
     UnregisterClass(WNDClassEx.lpszClassName, WNDClassEx.hInstance);
 
 	return FALSE;
