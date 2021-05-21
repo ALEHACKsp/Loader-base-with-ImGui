@@ -7,4 +7,4 @@
 
 Using XorStr: https://github.com/qis/xorstr
 
-Using LazyImporter: https://github.com/JustasMasiulis/lazy_importer
+Using LazyImporter By T0b1
