@@ -3,8 +3,8 @@
 
 BOOL APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int iShowCmd) {
 
-	WNDCLASSEX WNDClassEx = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0, 0, GetModuleHandle(NULL), NULL, LoadCursor(NULL, IDC_ARROW), NULL, NULL, CMenu::Get().LoaderName.c_str(), NULL };
-   RegisterClassEx(&WNDClassEx);
+    WNDCLASSEX WNDClassEx = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0, 0, GetModuleHandle(NULL), NULL, LoadCursor(NULL, IDC_ARROW), NULL, NULL, CMenu::Get().LoaderName.c_str(), NULL };
+    RegisterClassEx(&WNDClassEx);
 
     CMenu::Get().LoaderHWND = CreateWindowEx(WS_EX_LAYERED, WNDClassEx.lpszClassName, CMenu::Get().LoaderName.c_str(), WS_POPUP, 0, 0, 1, 1, NULL, NULL, WNDClassEx.hInstance, NULL);
     
@@ -93,7 +93,7 @@ BOOL APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
     DestroyWindow(CMenu::Get().LoaderHWND);
     UnregisterClass(WNDClassEx.lpszClassName, WNDClassEx.hInstance);
 
-	return FALSE;
+    return FALSE;
 }
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam) {
@@ -104,6 +104,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam) {
     }
 
     switch (uiMsg) {
+        case WM_DESTROY: {
+            PostQuitMessage(WM_QUIT);
+            return 0LL;
+        } break;
+
         case WM_SIZE: {
             if (g_LpDirect3DDevice != NULL && wParam != SIZE_MINIMIZED) {
 
@@ -112,18 +117,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam) {
 
                 ResetDevice();
             }
-            return 0U;
+            return 0LL;
         } break;
+
         case WM_SYSCOMMAND: {
             /* Disable ALT application menu */
             if ((wParam & 0xfff0) == SC_KEYMENU) {
 
-                return 0U;
+                return 0LL;
             }
-        } break;
-        case WM_DESTROY: {
-            PostQuitMessage(WM_QUIT);
-            return 0U;
         } break;
     }
 
