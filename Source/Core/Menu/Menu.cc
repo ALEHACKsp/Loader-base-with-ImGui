@@ -100,7 +100,7 @@ void CMenu::CreateFonts(ImGuiIO& IO, UINT uiFontFlags) {
 	ImFont.ImArialConfig.RasterizerMultiply = 1.0f;
 	ImFont.ImArialConfig.EllipsisChar = -1;
 
-	IO.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\Arial.ttf", 16.0f, &ImFont.ImArialConfig, StaticRanges);
+	IO.Fonts->AddFontFromFileTTF(XorStr("C:\\Windows\\Fonts\\Arial.ttf"), 16.0f, &ImFont.ImArialConfig, StaticRanges);
 
 	ImGuiFreeType::BuildFontAtlas(IO.Fonts, uiFontFlags);
 }

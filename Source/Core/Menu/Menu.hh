@@ -30,7 +30,7 @@ public:
 
 	bool bVisible = true;
 	HWND LoaderHWND = nullptr;
-	std::string LoaderName = "ImGui Loader";
+	std::string LoaderName = XorStr("ImGui Loader");
 
 private:
 	struct ImFont_t {
