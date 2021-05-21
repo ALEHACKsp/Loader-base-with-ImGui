@@ -16,10 +16,12 @@ enum ESize : int {
 class CMenu : public CSingleton<CMenu> {
 public:
 	struct Screen_t {
+
 		float Size[ESize::Count] = {};
 	} Screen;
 
 	struct Menu_t {
+
 		float Size[ESize::Count] = { 400.0f, 350.0f };
 	} Menu;
 
@@ -31,6 +33,11 @@ public:
 	std::string LoaderName = "ImGui Loader";
 
 private:
+	struct ImFont_t {
+
+		ImFontConfig ImArialConfig;
+	} ImFont;
+
 	void CreateStyles(ImGuiStyle* Style);
 	void CreateColors(ImGuiStyle* Style);
 	void CreateFonts(ImGuiIO& IO, UINT uiFontFlags = 0U);
