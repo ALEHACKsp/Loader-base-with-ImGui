@@ -5,6 +5,6 @@
 [![x64](https://img.shields.io/badge/arch-x64-red.svg?style=plastic)](https://en.wikipedia.org/wiki/64-bit_computing) 
 [![License](https://img.shields.io/github/license/sDylane/Loader-base-with-ImGui.svg?style=plastic)](LICENSE)
 
-Using XorStr: https://github.com/JustasMasiulis/xorstr
+Using XorStr: https://github.com/qis/xorstr
 
 Using LazyImporter: https://github.com/JustasMasiulis/lazy_importer
