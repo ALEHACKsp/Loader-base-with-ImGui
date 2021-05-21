@@ -14,7 +14,7 @@ void CMenu::SetupFrontend() {
 
 void CMenu::Render() {
 
-	GetWindowRect(GetDesktopWindow(), &ScreenSize);
+	LI_FN(GetWindowRect)(GetDesktopWindow(), &ScreenSize);
 	this->Screen.Size[ESize::Width] = (ScreenSize.right - Menu.Size[ESize::Width]) / 2.0f;
 	this->Screen.Size[ESize::Height] = (ScreenSize.bottom - Menu.Size[ESize::Height]) / 2.0f;
 
@@ -97,10 +97,10 @@ void CMenu::CreateFonts(ImGuiIO& IO, UINT uiFontFlags) {
 	ImFont.ImArialConfig.GlyphMaxAdvanceX = FLT_MAX;
 	ImFont.ImArialConfig.MergeMode = false;
 	ImFont.ImArialConfig.FontBuilderFlags = ImGuiFreeTypeBuilderFlags::ImGuiFreeTypeBuilderFlags_LightHinting;
-	ImFont.ImArialConfig.RasterizerMultiply = 1.0f;
+	ImFont.ImArialConfig.RasterizerMultiply = 1.2f;
 	ImFont.ImArialConfig.EllipsisChar = -1;
 
 	IO.Fonts->AddFontFromFileTTF(XorStr("C:\\Windows\\Fonts\\Arial.ttf"), 16.0f, &ImFont.ImArialConfig, StaticRanges);
 
-	ImGuiFreeType::BuildFontAtlas(IO.Fonts, uiFontFlags);
+	IFH_64(ImGuiFreeType::BuildFontAtlas)(IO.Fonts, uiFontFlags);
 }

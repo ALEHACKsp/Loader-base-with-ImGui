@@ -12,11 +12,11 @@ MSG                     g_Message = {};
 
 bool CreateDevice(HWND hWnd) {
 
-    if ((g_LpDirect3D9 = Direct3DCreate9(D3D_SDK_VERSION)) == NULL) {
+    if ((g_LpDirect3D9 = IFH_64(Direct3DCreate9)(D3D_SDK_VERSION)) == NULL) {
         return false;
     }
 
-    ZeroMemory(&g_D3DPresentParameters, sizeof(g_D3DPresentParameters));
+    LI_FN(memset)(&g_D3DPresentParameters, NULL, sizeof(g_D3DPresentParameters));
     g_D3DPresentParameters.BackBufferWidth = 0U;
     g_D3DPresentParameters.BackBufferHeight = 0U;
     g_D3DPresentParameters.BackBufferFormat = _D3DFORMAT::D3DFMT_UNKNOWN;
@@ -58,7 +58,7 @@ void CleanupDevice() {
 
 void ResetDevice() {
 
-    ImGui_ImplDX9_InvalidateDeviceObjects();
+    IFH_64(ImGui_ImplDX9_InvalidateDeviceObjects)();
     HRESULT HResult = g_LpDirect3DDevice->Reset(&g_D3DPresentParameters);
 
     if (HResult == D3DERR_INVALIDCALL) {
@@ -66,7 +66,7 @@ void ResetDevice() {
         assert(NULL);
     }
 
-    ImGui_ImplDX9_CreateDeviceObjects();
+    IFH_64(ImGui_ImplDX9_CreateDeviceObjects)();
 }
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam);

@@ -4,25 +4,25 @@
 BOOL APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int iShowCmd) {
 
     WNDCLASSEX WNDClassEx = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0, 0, GetModuleHandle(NULL), NULL, LoadCursor(NULL, IDC_ARROW), NULL, NULL, CMenu::Get().LoaderName.c_str(), NULL };
-    RegisterClassEx(&WNDClassEx);
+    LI_FN(RegisterClassEx)(&WNDClassEx);
 
-    CMenu::Get().LoaderHWND = CreateWindowEx(WS_EX_LAYERED, WNDClassEx.lpszClassName, CMenu::Get().LoaderName.c_str(), WS_POPUP, 0, 0, 1, 1, NULL, NULL, WNDClassEx.hInstance, NULL);
+    CMenu::Get().LoaderHWND = LI_FN(CreateWindowEx)(WS_EX_LAYERED, WNDClassEx.lpszClassName, CMenu::Get().LoaderName.c_str(), WS_POPUP, 0, 0, 1, 1, NULL, NULL, WNDClassEx.hInstance, NULL);
     
     /* Initialize Direct3D */
-    if (!CreateDevice(CMenu::Get().LoaderHWND)) {
+    if (!IFH_64(CreateDevice)(CMenu::Get().LoaderHWND)) {
 
-        CleanupDevice();
-        UnregisterClass(WNDClassEx.lpszClassName, WNDClassEx.hInstance);
+        LI_FN(CleanupDevice)();
+        LI_FN(UnregisterClass)(WNDClassEx.lpszClassName, WNDClassEx.hInstance);
 
         return TRUE;
     }
 
     /* Show the window */
-    ShowWindow(CMenu::Get().LoaderHWND, SW_HIDE);
-    UpdateWindow(CMenu::Get().LoaderHWND);
+    LI_FN(ShowWindow)(CMenu::Get().LoaderHWND, SW_HIDE);
+    LI_FN(UpdateWindow)(CMenu::Get().LoaderHWND);
 
     /* Setup ImGui context */
-    ImGui::CreateContext();
+    IFH_64(ImGui::CreateContext)(NULL);
 
     ImGui::GetIO().IniFilename = NULL;
     ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_::ImGuiConfigFlags_NavEnableKeyboard;
@@ -31,16 +31,16 @@ BOOL APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
     /* Create Fonts/Colors */
     CMenu::Get().SetupFrontend();
 
-    ImGui_ImplWin32_Init(CMenu::Get().LoaderHWND);
-    ImGui_ImplDX9_Init(g_LpDirect3DDevice);
+    IFH_64(ImGui_ImplWin32_Init)(CMenu::Get().LoaderHWND);
+    IFH_64(ImGui_ImplDX9_Init)(g_LpDirect3DDevice);
 
     while (CMenu::Get().bVisible) {
-        ZeroMemory(&g_Message, sizeof(g_Message));
+        LI_FN(memset)(&g_Message, NULL, sizeof(g_Message));
 
-        while (PeekMessage(&g_Message, NULL, 0U, 0U, PM_REMOVE)) {
+        while (LI_FN(PeekMessage)(&g_Message, NULL, 0U, 0U, PM_REMOVE)) {
 
-            TranslateMessage(&g_Message);
-            DispatchMessage(&g_Message);
+            LI_FN(TranslateMessage)(&g_Message);
+            LI_FN(DispatchMessage)(&g_Message);
 
             if (g_Message.message == WM_QUIT) {
 
@@ -53,69 +53,71 @@ BOOL APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
             break;
         }
 
-        ImGui_ImplDX9_NewFrame();
-        ImGui_ImplWin32_NewFrame();
-        ImGui::NewFrame();
+        IFH_64(ImGui_ImplDX9_NewFrame)();
+        IFH_64(ImGui_ImplWin32_NewFrame)();
+        IFH_64(ImGui::NewFrame)();
 
         CMenu::Get().Render();
 
-        ImGui::EndFrame();
+        IFH_64(ImGui::EndFrame)();
 
         g_LpDirect3DDevice->Clear(0UL, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, NULL, 1.0f, 0UL);
 
         if (g_LpDirect3DDevice->BeginScene() >= 0) {
 
-            ImGui::Render();
-            ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());
+            IFH_64(ImGui::Render)();
+            IFH_64(ImGui_ImplDX9_RenderDrawData)(ImGui::GetDrawData());
             g_LpDirect3DDevice->EndScene();
         }
 
         if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_::ImGuiConfigFlags_ViewportsEnable) {
 
-            ImGui::UpdatePlatformWindows();
-            ImGui::RenderPlatformWindowsDefault();
+            IFH_64(ImGui::UpdatePlatformWindows)();
+            IFH_64(ImGui::RenderPlatformWindowsDefault)(NULL, NULL);
         }
 
         HRESULT HResult = g_LpDirect3DDevice->Present(NULL, NULL, NULL, NULL);
 
         if (HResult == D3DERR_DEVICELOST && g_LpDirect3DDevice->TestCooperativeLevel() == D3DERR_DEVICENOTRESET) {
 
-            ResetDevice();
+            LI_FN(ResetDevice)();
         }
     }
 
     /* Cleanup */
-    ImGui_ImplDX9_Shutdown();
-    ImGui_ImplWin32_Shutdown();
-    ImGui::DestroyContext();
+    IFH_64(ImGui_ImplDX9_Shutdown)();
+    IFH_64(ImGui_ImplWin32_Shutdown)();
+    IFH_64(ImGui::DestroyContext)();
 
-    CleanupDevice();
-    DestroyWindow(CMenu::Get().LoaderHWND);
-    UnregisterClass(WNDClassEx.lpszClassName, WNDClassEx.hInstance);
+    IFH_64(CleanupDevice)();
+    IFH_64(DestroyWindow)(CMenu::Get().LoaderHWND);
+    LI_FN(UnregisterClass)(WNDClassEx.lpszClassName, WNDClassEx.hInstance);
 
     return FALSE;
 }
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam) {
 
-    if (ImGui_ImplWin32_WndProcHandler(hWnd, uiMsg, wParam, lParam)) {
+    if (IFH_64(ImGui_ImplWin32_WndProcHandler)(hWnd, uiMsg, wParam, lParam)) {
 
         return 1LL;
     }
 
     switch (uiMsg) {
         case WM_DESTROY: {
-            PostQuitMessage(WM_QUIT);
+
+            LI_FN(PostQuitMessage)(WM_QUIT);
             return 0LL;
         } break;
 
         case WM_SIZE: {
+
             if (g_LpDirect3DDevice != NULL && wParam != SIZE_MINIMIZED) {
 
                 g_D3DPresentParameters.BackBufferWidth = LOWORD(lParam);
                 g_D3DPresentParameters.BackBufferHeight = HIWORD(lParam);
 
-                ResetDevice();
+                LI_FN(ResetDevice)();
             }
             return 0LL;
         } break;
