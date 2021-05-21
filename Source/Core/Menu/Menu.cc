@@ -23,8 +23,7 @@ void CMenu::Render() {
 
 	ImGui::Begin(LoaderName.c_str(), &bVisible, WindowFlags); {
 
-	}
-	ImGui::End();
+	} ImGui::End();
 }
 
 void CMenu::CreateStyles(ImGuiStyle* Style) {

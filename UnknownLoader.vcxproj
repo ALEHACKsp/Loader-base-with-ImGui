@@ -212,7 +212,7 @@
     <ClInclude Include="Source\Resources\ImGui\Others\TextEdit.hh" />
     <ClInclude Include="Source\Resources\ImGui\Others\TrueType.hh" />
     <ClInclude Include="Source\Resources\ImGui\Others\Win32\Impl_Win32.hh" />
-    <ClInclude Include="Source\Utilities\LazyIimporter.hh" />
+    <ClInclude Include="Source\Utilities\LazyImporter.hh" />
     <ClInclude Include="Source\Utilities\Singleton.hh" />
     <ClInclude Include="Source\Utilities\XorStr.hh" />
   </ItemGroup>
