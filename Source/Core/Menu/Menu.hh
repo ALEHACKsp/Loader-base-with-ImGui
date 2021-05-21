@@ -28,7 +28,7 @@ public:
 
 	bool bVisible = true;
 	HWND LoaderHWND = nullptr;
-	const char* LoaderName = "ImGui Loader";
+	std::string LoaderName = "ImGui Loader";
 
 private:
 	void CreateStyles(ImGuiStyle* Style);

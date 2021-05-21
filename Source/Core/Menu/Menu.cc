@@ -15,13 +15,13 @@ void CMenu::SetupFrontend() {
 void CMenu::Render() {
 
 	GetWindowRect(GetDesktopWindow(), &ScreenSize);
-	this->Screen.Size[ESize::Width] = (ScreenSize.right - this->Menu.Size[ESize::Width]) / 2.0f;
-	this->Screen.Size[ESize::Height] = (ScreenSize.bottom - this->Menu.Size[ESize::Height]) / 2.0f;
+	this->Screen.Size[ESize::Width] = (ScreenSize.right - Menu.Size[ESize::Width]) / 2.0f;
+	this->Screen.Size[ESize::Height] = (ScreenSize.bottom - Menu.Size[ESize::Height]) / 2.0f;
 
-	ImGui::SetNextWindowPos(ImVec2{ Screen.Size[ESize::Width], Screen.Size[ESize::Height] }, ImGuiCond_Once, ImVec2{ 0.0f, 0.0f });
+	ImGui::SetNextWindowPos(ImVec2{ Screen.Size[ESize::Width], Screen.Size[ESize::Height] }, ImGuiCond_::ImGuiCond_Once, ImVec2{ 0.0f, 0.0f });
 	ImGui::SetNextWindowSize(ImVec2{ Menu.Size[ESize::Width], Menu.Size[ESize::Height] }, ImGuiCond_::ImGuiCond_Always);
 
-	ImGui::Begin(LoaderName, &bVisible, WindowFlags); {
+	ImGui::Begin(LoaderName.c_str(), &bVisible, WindowFlags); {
 
 	}
 	ImGui::End();
@@ -55,8 +55,8 @@ void CMenu::CreateStyles(ImGuiStyle* Style) {
 	Style->TabRounding = 0.0f;
 
 	Style->WindowTitleAlign = ImVec2{ 0.5f, 0.5f };
-	Style->WindowMenuButtonPosition = ImGuiDir_None;
-	Style->ColorButtonPosition = ImGuiDir_Right;
+	Style->WindowMenuButtonPosition = ImGuiDir_::ImGuiDir_None;
+	Style->ColorButtonPosition = ImGuiDir_::ImGuiDir_Right;
 	Style->ButtonTextAlign = ImVec2{ 0.5f, 0.5f };
 	Style->SelectableTextAlign = ImVec2{ 0.5f, 0.5f };
 
@@ -74,22 +74,20 @@ void CMenu::CreateStyles(ImGuiStyle* Style) {
 
 void CMenu::CreateColors(ImGuiStyle* Style) {
 
-	Style->Colors[ImGuiCol_Text] = ImColor(255, 255, 255, 255);
-	Style->Colors[ImGuiCol_TextDisabled] = ImColor(100, 100, 100, 255);
-	Style->Colors[ImGuiCol_WindowBg] = ImColor(40, 40, 40, 255);
-	//Style->Colors[ImGuiCol_ChildBg] = ImColor(45, 45, 45, 200);
+	Style->Colors[ImGuiCol_::ImGuiCol_Text] = ImColor(255, 255, 255, 255);
+	Style->Colors[ImGuiCol_::ImGuiCol_WindowBg] = ImColor(55, 55, 55, 255);
 
 	Style = &ImGui::GetStyle();
 }
 
 void CMenu::CreateFonts(ImGuiIO& IO, UINT uiFontFlags) {
 
-	static const ImWchar StaticRanges[] = { 0x0020, 0x00FF, 0x2000, 0x206F, 0x3000, 0x30FF, 0x31F0, 0x31FF, 0xFF00, 0xFFEF, 0x4e00, 0x9FAF, 0x0400, 0x052F, 0x2DE0, 0x2DFF, 0xA640, 0xA69F, 0 };
+	const ImWchar StaticRanges[] = { 0x0020, 0x00FF, 0x2000, 0x206F, 0x3000, 0x30FF, 0x31F0, 0x31FF, 0xFF00, 0xFFEF, 0x4e00, 0x9FAF, 0x0400, 0x052F, 0x2DE0, 0x2DFF, 0xA640, 0xA69F, 0 };
 
 	ImFontConfig ImArialConfig;
 	ImArialConfig.FontDataOwnedByAtlas = true;
 	ImArialConfig.MergeMode = false;
-	ImArialConfig.RasterizerMultiply = 1.2f;
+	ImArialConfig.RasterizerMultiply = 1.0f;
 	ImArialConfig.FontBuilderFlags = ImGuiFreeTypeBuilderFlags::ImGuiFreeTypeBuilderFlags_LightHinting;
 	IO.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\Arial.ttf", 14.0f, &ImArialConfig, StaticRanges);
 

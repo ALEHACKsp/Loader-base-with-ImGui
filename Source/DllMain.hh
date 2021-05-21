@@ -34,6 +34,7 @@ bool CreateDevice(HWND hWnd) {
 
     if (g_LpDirect3D9->CreateDevice(D3DADAPTER_DEFAULT, _D3DDEVTYPE::D3DDEVTYPE_HAL, hWnd, D3DCREATE_HARDWARE_VERTEXPROCESSING,
         &g_D3DPresentParameters, &g_LpDirect3DDevice) < 0L) {
+
         return false;
     }
 
@@ -43,11 +44,13 @@ bool CreateDevice(HWND hWnd) {
 void CleanupDevice() {
 
     if (g_LpDirect3DDevice) {
+
         g_LpDirect3DDevice->Release();
         g_LpDirect3DDevice = NULL;
     }
 
     if (g_LpDirect3D9) {
+
         g_LpDirect3D9->Release();
         g_LpDirect3D9 = NULL;
     }
@@ -59,6 +62,7 @@ void ResetDevice() {
     HRESULT HResult = g_LpDirect3DDevice->Reset(&g_D3DPresentParameters);
 
     if (HResult == D3DERR_INVALIDCALL) {
+
         assert(NULL);
     }
 

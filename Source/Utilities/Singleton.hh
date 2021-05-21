@@ -3,7 +3,7 @@
 #ifndef Singleton_hh
 #define Singleton_hh
 
-template <typename T>
+template <typename Inst>
 class CSingleton {
 protected:
 	CSingleton() = default;
@@ -16,8 +16,9 @@ protected:
 	CSingleton& operator=(CSingleton&&) = delete;
 
 public:
-	static T& Get() {
-		static T Instance{ };
+	static Inst& Get() {
+
+		static Inst Instance{};
 		return Instance;
 	}
 };
