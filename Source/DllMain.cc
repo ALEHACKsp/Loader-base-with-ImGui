@@ -4,7 +4,7 @@
 BOOL APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int iShowCmd) {
 
 	WNDCLASSEX WNDClassEx = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0, 0, GetModuleHandle(NULL), NULL, LoadCursor(NULL, IDC_ARROW), NULL, NULL, CMenu::Get().LoaderName.c_str(), NULL };
-    RegisterClassEx(&WNDClassEx);
+   RegisterClassEx(&WNDClassEx);
 
     CMenu::Get().LoaderHWND = CreateWindowEx(WS_EX_LAYERED, WNDClassEx.lpszClassName, CMenu::Get().LoaderName.c_str(), WS_POPUP, 0, 0, 1, 1, NULL, NULL, WNDClassEx.hInstance, NULL);
     

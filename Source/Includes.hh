@@ -20,10 +20,12 @@
 /* ImGui Implementation */
 #include "Resources/ImGui/Internal.hh"
 #include "Resources/ImGui/Others/DX9/Impl_DX9.hh"
-#include "Resources/ImGui/Others/Win32/Impl_Win32.hh"
 #include "Resources/ImGui/Others/StdLib/StdLib.hh"
+#include "Resources/ImGui/Others/Win32/Impl_Win32.hh"
 
 /* Utilities */
+#include "Utilities/LazyImporter.hh"
 #include "Utilities/Singleton.hh"
+#include "Utilities/XorStr.hh"
 
 #endif // !Includes_hh

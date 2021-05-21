@@ -348,6 +348,12 @@
     <ClInclude Include="Source\Utilities\Singleton.hh">
       <Filter>Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Utilities\XorStr.hh">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utilities\LazyIimporter.hh">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resources">
