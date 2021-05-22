@@ -106,6 +106,7 @@
     <ClCompile Include="Source\Resources\ImGui\Others\Win32\Impl_Win32.cc" />
     <ClCompile Include="Source\Resources\ImGui\Tables.cc" />
     <ClCompile Include="Source\Resources\ImGui\Widgets.cc" />
+    <ClCompile Include="Source\Utilities\Utilities.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core\Inject\Inject.hh" />
@@ -218,6 +219,7 @@
     <ClInclude Include="Source\Resources\ImGui\Others\Win32\Impl_Win32.hh" />
     <ClInclude Include="Source\Utilities\LazyImporter.hh" />
     <ClInclude Include="Source\Utilities\Singleton.hh" />
+    <ClInclude Include="Source\Utilities\Utilities.hh" />
     <ClInclude Include="Source\Utilities\XorStr.hh" />
   </ItemGroup>
   <ItemGroup>

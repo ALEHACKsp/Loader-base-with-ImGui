@@ -35,6 +35,9 @@
     <ClCompile Include="Source\Core\Inject\Inject.cc">
       <Filter>Core\Inject</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Utilities\Utilities.cc">
+      <Filter>Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Includes.hh" />
@@ -365,6 +368,9 @@
     </ClInclude>
     <ClInclude Include="Source\Core\Inject\Inject.hh">
       <Filter>Core\Inject</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utilities\Utilities.hh">
+      <Filter>Utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
