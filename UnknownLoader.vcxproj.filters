@@ -32,6 +32,9 @@
     <ClCompile Include="Source\Core\Menu\CustomImGui\CustomImGui.cc">
       <Filter>Core\Menu\CustomImGui</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Core\Inject\Inject.cc">
+      <Filter>Core\Inject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Includes.hh" />
@@ -360,6 +363,9 @@
     <ClInclude Include="Source\Core\Menu\CustomImGui\CustomImGui.hh">
       <Filter>Core\Menu\CustomImGui</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Core\Inject\Inject.hh">
+      <Filter>Core\Inject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resources">
@@ -409,6 +415,9 @@
     </Filter>
     <Filter Include="Core\Menu\CustomImGui">
       <UniqueIdentifier>{5d11ea2e-860e-47de-b46f-e38ae9ad6791}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Inject">
+      <UniqueIdentifier>{6698a582-53a0-461c-9b5d-1b7935645d77}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

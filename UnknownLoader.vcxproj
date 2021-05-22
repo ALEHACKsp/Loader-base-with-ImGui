@@ -94,6 +94,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Core\Inject\Inject.cc" />
     <ClCompile Include="Source\Core\Menu\CustomImGui\CustomImGui.cc" />
     <ClCompile Include="Source\Core\Menu\Menu.cc" />
     <ClCompile Include="Source\DllMain.cc" />
@@ -107,6 +108,7 @@
     <ClCompile Include="Source\Resources\ImGui\Widgets.cc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Core\Inject\Inject.hh" />
     <ClInclude Include="Source\Core\Menu\CustomImGui\CustomImGui.hh" />
     <ClInclude Include="Source\Core\Menu\Menu.hh" />
     <ClInclude Include="Source\DllMain.hh" />
