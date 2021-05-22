@@ -97,8 +97,8 @@ void CMenu::CreateFonts(ImGuiIO& IO, UINT uiFontFlags) {
 		ImFont.ImDefaultConfig.GlyphMinAdvanceX = 0.0f;
 		ImFont.ImDefaultConfig.GlyphMaxAdvanceX = FLT_MAX;
 		ImFont.ImDefaultConfig.MergeMode = false;
-		ImFont.ImDefaultConfig.FontBuilderFlags = ImGuiFreeTypeBuilderFlags::ImGuiFreeTypeBuilderFlags_LightHinting;
-		ImFont.ImDefaultConfig.RasterizerMultiply = 1.2f;
+		ImFont.ImDefaultConfig.FontBuilderFlags = ImGuiFreeTypeBuilderFlags::ImGuiFreeTypeBuilderFlags_ForceAutoHint;
+		ImFont.ImDefaultConfig.RasterizerMultiply = 1.0f;
 		ImFont.ImDefaultConfig.EllipsisChar = -1;
 	}
 	ImFont.Default = IO.Fonts->AddFontFromFileTTF(XorStr("C:\\Windows\\Fonts\\Arial.ttf"), 16.0f, &ImFont.ImDefaultConfig, StaticRanges);
@@ -118,7 +118,7 @@ void CMenu::CreateFonts(ImGuiIO& IO, UINT uiFontFlags) {
 		ImFont.ImSecondConfig.GlyphMaxAdvanceX = FLT_MAX;
 		ImFont.ImSecondConfig.MergeMode = false;
 		ImFont.ImSecondConfig.FontBuilderFlags = ImGuiFreeTypeBuilderFlags::ImGuiFreeTypeBuilderFlags_ForceAutoHint;
-		ImFont.ImSecondConfig.RasterizerMultiply = 1.2f;
+		ImFont.ImSecondConfig.RasterizerMultiply = 1.0f;
 		ImFont.ImSecondConfig.EllipsisChar = -1;
 	}
 	ImFont.Second = IO.Fonts->AddFontFromFileTTF(XorStr("C:\\Windows\\Fonts\\Verdana.ttf"), 16.0f, &ImFont.ImSecondConfig, StaticRanges);

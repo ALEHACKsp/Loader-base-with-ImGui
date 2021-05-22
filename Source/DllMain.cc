@@ -49,7 +49,6 @@ BOOL APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
         }
 
         if (!CMenu::Get().bVisible) {
-
             break;
         }
 
@@ -99,7 +98,6 @@ BOOL APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam) {
 
     if (IFH_64(ImGui_ImplWin32_WndProcHandler)(hWnd, uiMsg, wParam, lParam)) {
-
         return 1LL;
     }
 
