@@ -105,23 +105,23 @@ void CMenu::CreateFonts(ImGuiIO& IO, UINT uiFontFlags) {
 
 	LI_FN(memset)(&ImFont.ImSecondConfig, NULL, sizeof(ImFont.ImSecondConfig)); {
 
-		ImFont.ImDefaultConfig.FontDataOwnedByAtlas = true;
-		ImFont.ImDefaultConfig.FontNo = FALSE;
-		ImFont.ImDefaultConfig.SizePixels = 800.0f;
-		ImFont.ImDefaultConfig.OversampleH = 3;
-		ImFont.ImDefaultConfig.OversampleV = 1;
-		ImFont.ImDefaultConfig.PixelSnapH = true;
-		ImFont.ImDefaultConfig.GlyphExtraSpacing = ImVec2{ 0.0f, 0.0f };
-		ImFont.ImDefaultConfig.GlyphOffset = ImVec2{ 0.0f, 0.0f };
-		ImFont.ImDefaultConfig.GlyphRanges = NULL;
-		ImFont.ImDefaultConfig.GlyphMinAdvanceX = 0.0f;
-		ImFont.ImDefaultConfig.GlyphMaxAdvanceX = FLT_MAX;
-		ImFont.ImDefaultConfig.MergeMode = false;
-		ImFont.ImDefaultConfig.FontBuilderFlags = ImGuiFreeTypeBuilderFlags::ImGuiFreeTypeBuilderFlags_ForceAutoHint;
-		ImFont.ImDefaultConfig.RasterizerMultiply = 1.2f;
-		ImFont.ImDefaultConfig.EllipsisChar = -1;
+		ImFont.ImSecondConfig.FontDataOwnedByAtlas = true;
+		ImFont.ImSecondConfig.FontNo = FALSE;
+		ImFont.ImSecondConfig.SizePixels = 800.0f;
+		ImFont.ImSecondConfig.OversampleH = 3;
+		ImFont.ImSecondConfig.OversampleV = 1;
+		ImFont.ImSecondConfig.PixelSnapH = true;
+		ImFont.ImSecondConfig.GlyphExtraSpacing = ImVec2{ 0.0f, 0.0f };
+		ImFont.ImSecondConfig.GlyphOffset = ImVec2{ 0.0f, 0.0f };
+		ImFont.ImSecondConfig.GlyphRanges = NULL;
+		ImFont.ImSecondConfig.GlyphMinAdvanceX = 0.0f;
+		ImFont.ImSecondConfig.GlyphMaxAdvanceX = FLT_MAX;
+		ImFont.ImSecondConfig.MergeMode = false;
+		ImFont.ImSecondConfig.FontBuilderFlags = ImGuiFreeTypeBuilderFlags::ImGuiFreeTypeBuilderFlags_ForceAutoHint;
+		ImFont.ImSecondConfig.RasterizerMultiply = 1.2f;
+		ImFont.ImSecondConfig.EllipsisChar = -1;
 	}
-	ImFont.Second = IO.Fonts->AddFontFromFileTTF(XorStr("C:\\Windows\\Fonts\\Verdana.ttf"), 16.0f, &ImFont.ImDefaultConfig, StaticRanges);
+	ImFont.Second = IO.Fonts->AddFontFromFileTTF(XorStr("C:\\Windows\\Fonts\\Verdana.ttf"), 16.0f, &ImFont.ImSecondConfig, StaticRanges);
 
 	IFH_64(ImGuiFreeType::BuildFontAtlas)(IO.Fonts, uiFontFlags);
 }
