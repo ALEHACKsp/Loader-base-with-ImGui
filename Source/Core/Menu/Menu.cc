@@ -1,12 +1,12 @@
 #include "Menu.hh"
 
-void CMenu::SetupFrontend() {
+void CMenu::SetupBackend() {
 
 	if (!this->bSetuped) {
 
 		this->CreateStyles(&ImGui::GetStyle());
 		this->CreateColors(&ImGui::GetStyle());
-		this->CreateFonts(ImGui::GetIO());
+		this->CreateFonts(ImGui::GetIO(), 0U);
 
 		this->bSetuped = true;
 	}
@@ -74,7 +74,7 @@ void CMenu::CreateStyles(ImGuiStyle* Style) {
 void CMenu::CreateColors(ImGuiStyle* Style) {
 
 	Style->Colors[ImGuiCol_::ImGuiCol_Text] = ImColor(255, 255, 255, 255);
-	Style->Colors[ImGuiCol_::ImGuiCol_WindowBg] = ImColor(55, 55, 55, 255);
+	Style->Colors[ImGuiCol_::ImGuiCol_WindowBg] = ImColor(40, 40, 40, 255);
 
 	Style = &ImGui::GetStyle();
 }
@@ -82,25 +82,46 @@ void CMenu::CreateColors(ImGuiStyle* Style) {
 void CMenu::CreateFonts(ImGuiIO& IO, UINT uiFontFlags) {
 
 	const ImWchar StaticRanges[] = { 0x0020, 0x00FF, 0x2000, 0x206F, 0x3000, 0x30FF, 0x31F0, 0x31FF, 0xFF00, 0xFFEF, 0x4e00, 0x9FAF, 0x0400, 0x052F, 0x2DE0, 0x2DFF, 0xA640, 0xA69F, 0 };
+	
+	LI_FN(memset)(&ImFont.ImDefaultConfig, NULL, sizeof(ImFont.ImDefaultConfig)); {
 
-	ZeroMemory(&ImFont.ImArialConfig, sizeof(ImFont.ImArialConfig));
-	ImFont.ImArialConfig.FontDataOwnedByAtlas = true;
-	ImFont.ImArialConfig.FontNo = FALSE;
-	ImFont.ImArialConfig.SizePixels = 800.0f;
-	ImFont.ImArialConfig.OversampleH = 3;
-	ImFont.ImArialConfig.OversampleV = 1;
-	ImFont.ImArialConfig.PixelSnapH = true;
-	ImFont.ImArialConfig.GlyphExtraSpacing = ImVec2{ 0.0f, 0.0f };
-	ImFont.ImArialConfig.GlyphOffset = ImVec2{ 0.0f, 0.0f };
-	ImFont.ImArialConfig.GlyphRanges = NULL;
-	ImFont.ImArialConfig.GlyphMinAdvanceX = 0.0f;
-	ImFont.ImArialConfig.GlyphMaxAdvanceX = FLT_MAX;
-	ImFont.ImArialConfig.MergeMode = false;
-	ImFont.ImArialConfig.FontBuilderFlags = ImGuiFreeTypeBuilderFlags::ImGuiFreeTypeBuilderFlags_LightHinting;
-	ImFont.ImArialConfig.RasterizerMultiply = 1.2f;
-	ImFont.ImArialConfig.EllipsisChar = -1;
+		ImFont.ImDefaultConfig.FontDataOwnedByAtlas = true;
+		ImFont.ImDefaultConfig.FontNo = FALSE;
+		ImFont.ImDefaultConfig.SizePixels = 800.0f;
+		ImFont.ImDefaultConfig.OversampleH = 3;
+		ImFont.ImDefaultConfig.OversampleV = 1;
+		ImFont.ImDefaultConfig.PixelSnapH = true;
+		ImFont.ImDefaultConfig.GlyphExtraSpacing = ImVec2{ 0.0f, 0.0f };
+		ImFont.ImDefaultConfig.GlyphOffset = ImVec2{ 0.0f, 0.0f };
+		ImFont.ImDefaultConfig.GlyphRanges = NULL;
+		ImFont.ImDefaultConfig.GlyphMinAdvanceX = 0.0f;
+		ImFont.ImDefaultConfig.GlyphMaxAdvanceX = FLT_MAX;
+		ImFont.ImDefaultConfig.MergeMode = false;
+		ImFont.ImDefaultConfig.FontBuilderFlags = ImGuiFreeTypeBuilderFlags::ImGuiFreeTypeBuilderFlags_LightHinting;
+		ImFont.ImDefaultConfig.RasterizerMultiply = 1.2f;
+		ImFont.ImDefaultConfig.EllipsisChar = -1;
+	}
+	ImFont.Default = IO.Fonts->AddFontFromFileTTF(XorStr("C:\\Windows\\Fonts\\Arial.ttf"), 16.0f, &ImFont.ImDefaultConfig, StaticRanges);
 
-	IO.Fonts->AddFontFromFileTTF(XorStr("C:\\Windows\\Fonts\\Arial.ttf"), 16.0f, &ImFont.ImArialConfig, StaticRanges);
+	LI_FN(memset)(&ImFont.ImSecondConfig, NULL, sizeof(ImFont.ImSecondConfig)); {
+
+		ImFont.ImDefaultConfig.FontDataOwnedByAtlas = true;
+		ImFont.ImDefaultConfig.FontNo = FALSE;
+		ImFont.ImDefaultConfig.SizePixels = 800.0f;
+		ImFont.ImDefaultConfig.OversampleH = 3;
+		ImFont.ImDefaultConfig.OversampleV = 1;
+		ImFont.ImDefaultConfig.PixelSnapH = true;
+		ImFont.ImDefaultConfig.GlyphExtraSpacing = ImVec2{ 0.0f, 0.0f };
+		ImFont.ImDefaultConfig.GlyphOffset = ImVec2{ 0.0f, 0.0f };
+		ImFont.ImDefaultConfig.GlyphRanges = NULL;
+		ImFont.ImDefaultConfig.GlyphMinAdvanceX = 0.0f;
+		ImFont.ImDefaultConfig.GlyphMaxAdvanceX = FLT_MAX;
+		ImFont.ImDefaultConfig.MergeMode = false;
+		ImFont.ImDefaultConfig.FontBuilderFlags = ImGuiFreeTypeBuilderFlags::ImGuiFreeTypeBuilderFlags_ForceAutoHint;
+		ImFont.ImDefaultConfig.RasterizerMultiply = 1.2f;
+		ImFont.ImDefaultConfig.EllipsisChar = -1;
+	}
+	ImFont.Second = IO.Fonts->AddFontFromFileTTF(XorStr("C:\\Windows\\Fonts\\Verdana.ttf"), 16.0f, &ImFont.ImDefaultConfig, StaticRanges);
 
 	IFH_64(ImGuiFreeType::BuildFontAtlas)(IO.Fonts, uiFontFlags);
 }

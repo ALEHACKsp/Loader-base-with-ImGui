@@ -29,7 +29,7 @@ BOOL APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
     ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_::ImGuiConfigFlags_ViewportsEnable;
 
     /* Create Fonts/Colors */
-    CMenu::Get().SetupFrontend();
+    CMenu::Get().SetupBackend();
 
     IFH_64(ImGui_ImplWin32_Init)(CMenu::Get().LoaderHWND);
     IFH_64(ImGui_ImplDX9_Init)(g_LpDirect3DDevice);

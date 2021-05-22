@@ -4,13 +4,14 @@
 #define Menu_hh
 
 #include "../../Includes.hh"
+#include "CustomImGui/CustomImGui.hh"
 
 enum ESize : int {
 
 	Width = 0,
-	Height,
+	Height = 1,
 
-	Count
+	Count = 2
 };
 
 class CMenu : public CSingleton<CMenu> {
@@ -25,7 +26,7 @@ public:
 		float Size[ESize::Count] = { 400.0f, 350.0f };
 	} Menu;
 
-	void SetupFrontend();
+	void SetupBackend();
 	void Render();
 
 	bool bVisible = true;
@@ -35,7 +36,11 @@ public:
 private:
 	struct ImFont_t {
 
-		ImFontConfig ImArialConfig;
+		ImFont* Default;
+		ImFontConfig ImDefaultConfig;
+
+		ImFont* Second;
+		ImFontConfig ImSecondConfig;
 	} ImFont;
 
 	void CreateStyles(ImGuiStyle* Style);
