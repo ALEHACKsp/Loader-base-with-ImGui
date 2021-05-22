@@ -34,7 +34,6 @@ bool CreateDevice(HWND hWnd) {
 
     if (g_LpDirect3D9->CreateDevice(D3DADAPTER_DEFAULT, _D3DDEVTYPE::D3DDEVTYPE_HAL, hWnd, D3DCREATE_HARDWARE_VERTEXPROCESSING,
         &g_D3DPresentParameters, &g_LpDirect3DDevice) < 0L) {
-
         return false;
     }
 
